@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Handover Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .handover-section {
+            transition: all 0.3s ease;
+        }
+        .handover-section.collapsed {
+            max-height: 60px;
+            overflow: hidden;
+        }
+        .priority-high {
+            border-left: 4px solid #ef4444;
+        }
+        .priority-medium {
+            border-left: 4px solid #f59e0b;
+        }
+        .priority-low {
+            border-left: 4px solid #10b981;
+        }
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+        .toggle-icon.rotated {
+            transform: rotate(180deg);
+        }
+        .search-highlight {
+            background-color: #fef08a;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Header -->
+        <header class="mb-8 bg-white rounded-lg shadow-md p-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800">IT Handover Document</h1>
+                    <p class="text-gray-600 mt-2">Prepared for Operations Team and incoming IT Manager</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-gray-600">Prepared by: <span class="font-medium">Louis Cutmore</span></p>
+                    <p class="text-gray-600">Date: <span class="font-medium">9th May, 2025</span></p>
+                </div>
+            </div>
+            
+            <div class="mt-6 flex flex-wrap gap-4">
+                <!-- <div class="relative flex-grow">
+                    <input type="text" id="searchInput" placeholder="Search document..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <i class="fas fa-search absolute right-3 top-3 text-gray-400"></i>
+                </div> -->
+                <button id="expandAll" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+                    <i class="fas fa-expand"></i> Expand All
+                </button>
+                <button id="collapseAll" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
+                    <i class="fas fa-compress"></i> Collapse All
+                </button>
+            </div>
+        </header>
+
+        <!-- Document Status -->
+        <div class="mb-8 bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+            <div class="flex items-start">
+                <div class="flex-shrink-0 pt-1">
+                    <i class="fas fa-exclamation-circle text-yellow-500 text-xl"></i>
+                </div>
+                <div class="ml-3">
+                    <h3 class="text-lg font-medium text-yellow-800">Document Status</h3>
+                    <div class="mt-2 text-yellow-700">
+                        <p>This document is current as of 9th May, 2025. <br> The next IT manager should review and update all sections accordingly.</p>
+                        <!-- <p class="mt-2 font-medium">Next scheduled review date: July 15, 2023</p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a href="#network-section" class="bg-white hover:bg-blue-50 rounded-lg shadow-sm p-4 border border-gray-200 flex items-center gap-3 transition-colors">
+                <div class="bg-blue-100 p-3 rounded-full">
+                    <i class="fas fa-network-wired text-blue-600 text-xl"></i>
+                </div>
+                <span class="font-medium text-gray-800">Network Infrastructure</span>
+            </a>
+            <a href="#systems-section" class="bg-white hover:bg-blue-50 rounded-lg shadow-sm p-4 border border-gray-200 flex items-center gap-3 transition-colors">
+                <div class="bg-purple-100 p-3 rounded-full">
+                    <i class="fas fa-server text-purple-600 text-xl"></i>
+                </div>
+                <span class="font-medium text-gray-800">Systems & Servers</span>
+            </a>
+            <a href="#applications-section" class="bg-white hover:bg-blue-50 rounded-lg shadow-sm p-4 border border-gray-200 flex items-center gap-3 transition-colors">
+                <div class="bg-green-100 p-3 rounded-full">
+                    <i class="fas fa-laptop-code text-green-600 text-xl"></i>
+                </div>
+                <span class="font-medium text-gray-800">Business Applications</span>
+            </a>
+        </div>
+
+        <!-- Main Content -->
+        <main>
+            <!-- 1. Network Infrastructure -->
+            <section id="network-section" class="handover-section bg-white rounded-lg shadow-md overflow-hidden mb-6">
+                <div class="section-header flex justify-between items-center p-6 bg-gray-800 text-white cursor-pointer">
+                    <h2 class="text-xl font-bold flex items-center gap-3">
+                        <i class="fas fa-network-wired"></i>
+                        <span>1. Network Infrastructure</span>
+                    </h2>
+                    <i class="toggle-icon fas fa-chevron-down text-white"></i>
+                </div>
+                <div class="section-content p-6">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">Networks</h3>
+                        <div class="bg-gray-100 rounded-lg p-4 border border-gray-200">
+                            <!-- <p class="text-gray-600 mb-3">The current network topology is documented in the following locations:</p>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-700"> 
+                                <li><strong>Primary Diagram:</strong> \\fileserver\IT\Network\Network_Diagram_2023.vsd</li>
+                                <li><strong>Backup Location:</strong> SharePoint > IT Documentation > Network Infrastructure</li>
+                            </ul> -->
+                            <div class="mt-4 p-3 bg-blue-50 rounded border border-blue-200">
+                                <p class="text-blue-800"><i class="fas fa-info-circle mr-2"></i> The networks were upgraded in the last 12 months to replace ageing hardware. </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">Key Network Components</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Device</th> 
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Public IP</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Credentials</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">Firewall: UniFi UDM</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Hub Server Room</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">130.195.48.130<BR>G.network</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">SCT</td>
+                                        <td class="px-6 py-4">Add camera & lock to server room<br>5 UniFi APs</td>
+                                    </tr>
+                                    <tr class="bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">Firewall: UniFi UDM</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">GGH Server Room</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">185.25.236.122<br>Exponential-e</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">SCT</td>
+                                        <td class="px-6 py-4">Site to site VPN with Hub & Kent<br>Backups sent daily to Kent</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">Firewall: Unifi UDM</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Kent Storage Room</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Primary: 83.244.176.162<br>Backup: 62.244.187.63<br>Exponential-e</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">UniFi Controller</td>
+                                        <td class="px-6 py-4">12 access points total</td>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">Firewall: UbiFi UDM</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Liverpool Server Room</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Primary: 83.244.156.244<br>Exponential-e<br>Backup: 192.168.68.50<br>O2 UK</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">SCT</td>
+                                        <td class="px-6 py-4">12 access points total</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">Firewall: Cisco</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Dominion</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Primary: 83.244.156.244<br>Exponential-e</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">UniFi Controller</td>
+                                        <td class="px-6 py-4">12 access points total</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+<!-- 
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">ISP Information</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-medium text-gray-800 mb-2">Primary ISP: Comcast Business</h4>
+                                <ul class="space-y-1 text-gray-700">
+                                    <li><strong>Account #:</strong> CB-78945612</li>
+                                    <li><strong>Contact:</strong> 1-800-COMCAST (option 3)</li>
+                                    <li><strong>Bandwidth:</strong> 500/50 Mbps</li>
+                                    <li><strong>Contract End:</strong> 12/15/2023</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-medium text-gray-800 mb-2">Backup ISP: Verizon Fios</h4>
+                                <ul class="space-y-1 text-gray-700">
+                                    <li><strong>Account #:</strong> VZ-32165498</li>
+                                    <li><strong>Contact:</strong> 1-800-VERIZON (option 2)</li>
+                                    <li><strong>Bandwidth:</strong> 200/200 Mbps</li>
+                                    <li><strong>Contract End:</strong> 06/30/2024</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">Pending Network Tasks</h3>
+                        <div class="space-y-3">
+                            <div class="priority-high p-4 bg-white rounded-lg border shadow-sm">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h4 class="font-medium">Upgrade wireless access points</h4>
+                                        <p class="text-sm text-gray-600 mt-1">The Ruckus licenses are due to expire in July and October (see Ruckus portal for licence expiry dates).</p>
+                                    </div>
+                                    <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">High Priority</span>
+                                </div>
+                                <div class="mt-3 flex items-center text-sm text-gray-500">
+                                    <i class="far fa-calendar-alt mr-1"></i> Target: July 2025
+                                </div>
+                            </div>
+                            <div class="priority-medium p-4 bg-white rounded-lg border shadow-sm">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h4 class="font-medium">Upgrade Dominion's network hardware</h4>
+                                        <p class="text-sm text-gray-600 mt-1">Change firewall for UniFi UDM and APs.</p>
+                                    </div>
+                                    <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">Medium Priority</span>
+                                </div>
+                                <div class="mt-3 flex items-center text-sm text-gray-500">
+                                    <i class="far fa-calendar-alt mr-1"></i> Target: August 2025
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. Systems & Servers -->
+            <section id="systems-section" class="handover-section bg-white rounded-lg shadow-md overflow-hidden mb-6">
+                <div class="section-header flex justify-between items-center p-6 bg-gray-800 text-white cursor-pointer">
+                    <h2 class="text-xl font-bold flex items-center gap-3">
+                        <i class="fas fa-server"></i>
+                        <span>2. Systems & Servers</span>
+                    </h2>
+                    <i class="toggle-icon fas fa-chevron-down text-white"></i>
+                </div>
+                <div class="section-content p-6">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">Physical Servers</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hostname</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Specs</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">OS</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Warranty</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">SRV-DC01</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Domain Controller</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Dell R740, 32GB RAM</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Windows Server 2019</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Until 05/2025</td>
+                                    </tr>
+                                    <tr class="bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">SRV-FILE01</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">File Server</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Dell R740, 64GB RAM</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Windows Server 2019</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Until 05/2025</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">SRV-BACKUP01</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Backup Server</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Dell R540, 64GB RAM</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Windows Server 2019</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Until 03/2024</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">Virtual Environment</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-medium text-gray-800 mb-2">VMware vSphere</h4>
+                                <ul class="space-y-1 text-gray-700">
+                                    <li><strong>Version:</strong> 7.0 U3</li>
+                                    <li><strong>Hosts:</strong> 3 (Dell R740xd)</li>
+                                    <li><strong>Cluster:</strong> PROD_CLUSTER</li>
+                                    <li><strong>vCenter:</strong> vcenter.company.local</li>
+                                    <li><strong>Credentials:</strong> IT Password Vault</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-medium text-gray-800 mb-2">Key Virtual Machines</h4>
+                                <ul class="space-y-1 text-gray-700">
+                                    <li><strong>VM-SQL01:</strong> Production SQL Server</li>
+                                    <li><strong>VM-WEB01:</strong> Internal web apps</li>
+                                    <li><strong>VM-MONITOR01:</strong> PRTG Monitoring</li>
+                                    <li><strong>VM-ADMIN01:</strong> Admin jump server</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">Backup Strategy</h3>
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-800 mb-2">Veeam Backup</h4>
+                                    <ul class="space-y-1 text-gray-700">
+                                        <li><strong>Version:</strong> 11.0.1.1261</li>
+                                        <li><strong>Schedule:</strong> Daily incremental, weekly full</li>
+                                        <li><strong>Retention:</strong> 30 days</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800 mb-2">Storage</h4>
+                                    <ul class="space-y-1 text-gray-700">
+                                        <li><strong>Primary:</strong> 20TB NAS</li>
+                                        <li><strong>Secondary:</strong> AWS S3 (cold storage)</li>
+                                        <li><strong>Capacity:</strong> 65% used</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800 mb-2">Testing</h4>
+                                    <ul class="space-y-1 text-gray-700">
+                                        <li><strong>Frequency:</strong> Quarterly</li>
+                                        <li><strong>Last Test:</strong> 05/15/2023</li>
+                                        <li><strong>Success Rate:</strong> 98%</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-3 bg-blue-50 rounded border border-blue-200">
+                                <p class="text-blue-800"><i class="fas fa-info-circle mr-2"></i> Backup reports are emailed to IT team every Monday morning.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">Pending System Tasks</h3>
+                        <div class="space-y-3">
+                            <div class="priority-high p-4 bg-white rounded-lg border shadow-sm">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h4 class="font-medium">Replace aging UPS batteries</h4>
+                                        <p class="text-sm text-gray-600 mt-1">APC UPS in server room showing battery wear of 87%.</p>
+                                    </div>
+                                    <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">High Priority</span>
+                                </div>
+                                <div class="mt-3 flex items-center text-sm text-gray-500">
+                                    <i class="far fa-calendar-alt mr-1"></i> Target: June 2023
+                                </div>
+                            </div>
+                            <div class="priority-medium p-4 bg-white rounded-lg border shadow-sm">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h4 class="font-medium">Document DR procedures</h4>
+                                        <p class="text-sm text-gray-600 mt-1">Current disaster recovery plan needs updating after recent changes.</p>
+                                    </div>
+                                    <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">Medium Priority</span>
+                                </div>
+                                <div class="mt-3 flex items-center text-sm text-gray-500">
+                                    <i class="far fa-calendar-alt mr-1"></i> Target: July 2023
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Business Applications -->
+            <section id="applications-section" class="handover-section bg-white rounded-lg shadow-md overflow-hidden mb-6">
+                <div class="section-header flex justify-between items-center p-6 bg-gray-800 text-white cursor-pointer">
+                    <h2 class="text-xl font-bold flex items-center gap-3">
+                        <i class="fas fa-laptop-code"></i>
+                        <span>3. Business Applications</span>
+                    </h2>
+                    <i class="toggle-icon fas fa-chevron-down text-white"></i>
+                </div>
+                <div class="section-content p-6">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">Critical Business Applications</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Application</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vendor</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Version</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Admin Access</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Support Contact</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">ERP System</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">SAP</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">S/4HANA 2021</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">ERPAdmin account</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">support@sap.com (Contract #SA-78945)</td>
+                                    </tr>
+                                    <tr class="bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">CRM</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Salesforce</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Winter '23</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">System Admin profile</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">1-800-SALESFORCE</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">Email</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Microsoft</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Exchange Online</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Global Admin</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Microsoft 365 Admin Center</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">License Information</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-medium text-gray-800 mb-2">Microsoft 365</h4>
+                                <ul class="space-y-1 text-gray-700">
+                                    <li><strong>Type:</strong> E3 Subscription</li>
+                                    <li><strong>Users:</strong> 145/150</li>
+                                    <li><strong>Renewal:</strong> Annual (next: 03/2024)</li>
+                                    <li><strong>Cost:</strong> $20/user/month</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-medium text-gray-800 mb-2">Adobe Creative Cloud</h4>
+                                <ul class="space-y-1 text-gray-700">
+                                    <li><strong>Type:</strong> Enterprise Term License</li>
+                                    <li><strong>Users:</strong> 25/25</li>
+                                    <li><strong>Renewal:</strong> 2-year term (next: 09/2024)</li>
+                                    <li><strong>Cost:</strong> $75/user/month</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-medium text-gray-800 mb-2">VMware vSphere</h4>
+                                <ul class="space-y-1 text-gray-700">
+                                    <li><strong>Type:</strong> Enterprise Plus</li>
+                                    <li><strong>CPUs:</strong> 12 sockets</li>
+                                    <li><strong>Renewal:</strong> Annual (next: 11/2023)</li>
+                                    <li><strong>Cost:</strong> $3,500/socket/year</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">Scheduled Maintenance</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Application</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Maintenance Window</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Frequency</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Completed</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Duration</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">ERP System</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">2nd Saturday monthly</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Monthly</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">06/10/2023</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">4 hours</td>
+                                    </tr>
+                                    <tr class="bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">Backup Verification</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">1st Friday quarterly</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Quarterly</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">04/07/2023</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">8 hours</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">Security Updates</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Patch Tuesday + 1 day</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Monthly</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">06/14/2023</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">2 hours</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">Pending Application Tasks</h3>
+                        <div class="space-y-3">
+                            <div class="priority-high p-4 bg-white rounded-lg border shadow-sm">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h4 class="font-medium">ERP system upgrade</h4>
+                                        <p class="text-sm text-gray-600 mt-1">SAP has notified us of mandatory upgrade by September 2023.</p>
+                                    </div>
+                                    <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">High Priority</span>
+                                </div>
+                                <div class="mt-3 flex items-center text-sm text-gray-500">
+                                    <i class="far fa-calendar-alt mr-1"></i> Target: August 2023
+                                </div>
+                            </div>
+                            <div class="priority-medium p-4 bg-white rounded-lg border shadow-sm">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h4 class="font-medium">Document CRM customizations</h4>
+                                        <p class="text-sm text-gray-600 mt-1">Several custom workflows and fields need documentation.</p>
+                                    </div>
+                                    <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">Medium Priority</span>
+                                </div>
+                                <div class="mt-3 flex items-center text-sm text-gray-500">
+                                    <i class="far fa-calendar-alt mr-1"></i> Target: July 2023
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Security -->
+            <section id="security-section" class="handover-section bg-white rounded-lg shadow-md overflow-hidden mb-6">
+                <div class="section-header flex justify-between items-center p-6 bg-gray-800 text-white cursor-pointer">
+                    <h2 class="text-xl font-bold flex items-center gap-3">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>4. Security</span>
+                    </h2>
+                    <i class="toggle-icon fas fa-chevron-down text-white"></i>
+                </div>
+                <div class="section-content p-6">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">Security Infrastructure</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-medium text-gray-800 mb-2">Endpoint Protection</h4>
+                                <ul class="space-y-1 text-gray-700">
+                                    <li><strong>Solution:</strong> CrowdStrike Falcon</li>
+                                    <li><strong>Coverage:</strong> 100% of endpoints</li>
+                                    <li><strong>Last Audit:</strong> 05/30/2023</li>
+                                    <li><strong>Admin Console:</strong> console.crowdstrike.com</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-medium text-gray-800 mb-2">Email Security</h4>
+                                <ul class="space-y-1 text-gray-700">
+                                    <li><strong>Solution:</strong> Mimecast</li>
+                                    <li><strong>Filtering:</strong> 99.8% effective</li>
+                                    <li><strong>Quarantine:</strong> 50-70 emails/day</li>
+                                    <li><strong>Admin Portal:</strong> admin.mimecast.com</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-medium text-gray-800 mb-2">Network Security</h4>
+                                <ul class="space-y-1 text-gray-700">
+                                    <li><strong>Firewall:</strong> FortiGate 100F</li>
+                                    <li><strong>IPS/IDS:</strong> Enabled</li>
+                                    <li><strong>VPN:</strong> FortiClient (MFA enforced)</li>
+                                    <li><strong>Admin:</strong> 192.168.1.2:8443</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">Security Policies</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-medium text-gray-800 mb-2">Password Policy</h4>
+                                <ul class="space-y-1 text-gray-700">
+                                    <li><strong>Length:</strong> Minimum 12 characters</li>
+                                    <li><strong>Complexity:</strong> Required</li>
+                                    <li><strong>Rotation:</strong> 90 days</li>
+                                    <li><strong>History:</strong> 5 passwords remembered</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-medium text-gray-800 mb-2">MFA Implementation</h4>
+                                <ul class="space-y-1 text-gray-700">
+                                    <li><strong>Coverage:</strong> All cloud services</li>
+                                    <li><strong>Solution:</strong> Microsoft Authenticator</li>
+                                    <li><strong>Enforcement:</strong> Conditional Access</li>
+                                    <li><strong>Exemptions:</strong> Break-glass accounts only</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">Vulnerability Management</h3>
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-800 mb-2">Scanning</h4>
+                                    <ul class="space-y-1 text-gray-700">
+                                        <li><strong>Tool:</strong> Nessus Professional</li>
+                                        <li><strong>Frequency:</strong> Weekly</li>
+                                        <li><strong>Last Scan:</strong> 06/12/2023</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800 mb-2">Findings</h4>
+                                    <ul class="space-y-1 text-gray-700">
+                                        <li><strong>Critical:</strong> 0</li>
+                                        <li><strong>High:</strong> 2</li>
+                                        <li><strong>Medium:</strong> 7</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800 mb-2">Remediation</h4>
+                                    <ul class="space-y-1 text-gray-700">
+                                        <li><strong>SLA Critical:</strong> 72 hours</li>
+                                        <li><strong>SLA High:</strong> 14 days</li>
+                                        <li><strong>SLA Medium:</strong> 30 days</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-3 bg-blue-50 rounded border border-blue-200">
+                                <p class="text-blue-800"><i class="fas fa-info-circle mr-2"></i> Vulnerability reports are reviewed in weekly security meetings.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. Vendor Contacts -->
+            <section id="vendors-section" class="handover-section bg-white rounded-lg shadow-md overflow-hidden mb-6">
+                <div class="section-header flex justify-between items-center p-6 bg-gray-800 text-white cursor-pointer">
+                    <h2 class="text-xl font-bold flex items-center gap-3">
+                        <i class="fas fa-address-book"></i>
+                        <span>5. Vendor Contacts</span>
+                    </h2>
+                    <i class="toggle-icon fas fa-chevron-down text-white"></i>
+                </div>
+                <div class="section-content p-6">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">Primary Vendors</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vendor</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Support Level</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contract Details</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">Dell Technologies</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">1-800-999-3355<br>prosupport@dell.com</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">ProSupport Plus</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Contract #DL-789456<br>Expires 05/2025</td>
+                                        <td class="px-6 py-4">4-hour response for critical issues</td>
+                                    </tr>
+                                    <tr class="bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">Microsoft</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">1-800-642-7676<br>admin@company.onmicrosoft.com</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Premier Support</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Contract #MS-321654<br>Annual renewal</td>
+                                        <td class="px-6 py-4">Designated TAM: Sarah Johnson</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">Cisco</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">1-800-553-6387<br>support@cisco.com</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Smart Net</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Contract #CS-147258<br>Expires 11/2023</td>
+                                        <td class="px-6 py-4">Includes software updates</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Pending Projects -->
+            <section id="projects-section" class="handover-section bg-white rounded-lg shadow-md overflow-hidden mb-6">
+                <div class="section-header flex justify-between items-center p-6 bg-gray-800 text-white cursor-pointer">
+                    <h2 class="text-xl font-bold flex items-center gap-3">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>6. Pending Projects</span>
+                    </h2>
+                    <i class="toggle-icon fas fa-chevron-down text-white"></i>
+                </div>
+                <div class="section-content p-6">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">Approved Projects</h3>
+                        <div class="space-y-4">
+                            <div class="priority-high p-4 bg-white rounded-lg border shadow-sm">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h4 class="font-medium">Office 365 Migration</h4>
+                                        <p class="text-sm text-gray-600 mt-1">Migrate remaining on-premises Exchange mailboxes to Exchange Online.</p>
+                                    </div>
+                                    <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">High Priority</span>
+                                </div>
+                                <div class="mt-3 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                    <div>
+                                        <span class="font-medium text-gray-700">Status:</span> Planning (20%)
+                                    </div>
+                                    <div>
+                                        <span class="font-medium text-gray-700">Target:</span> Q3 2023
+                                    </div>
+                                    <div>
+                                        <span class="font-medium text-gray-700">Budget:</span> $15,000
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="priority-medium p-4 bg-white rounded-lg border shadow-sm">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h4 class="font-medium">Wi-Fi 6 Upgrade</h4>
+                                        <p class="text-sm text-gray-600 mt-1">Replace aging wireless infrastructure with Wi-Fi 6 compatible hardware.</p>
+                                    </div>
+                                    <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">Medium Priority</span>
+                                </div>
+                                <div class="mt-3 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                    <div>
+                                        <span class="font-medium text-gray-700">Status:</span> Budget Approved
+                                    </div>
+                                    <div>
+                                        <span class="font-medium text-gray-700">Target:</span> Q4 2023
+                                    </div>
+                                    <div>
+                                        <span class="font-medium text-gray-700">Budget:</span> $25,000
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">Proposed Projects</h3>
+                        <div class="space-y-4">
+                            <div class="priority-low p-4 bg-white rounded-lg border shadow-sm">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h4 class="font-medium">Endpoint Encryption Rollout</h4>
+                                        <p class="text-sm text-gray-600 mt-1">Implement BitLocker for all laptops and mobile devices.</p>
+                                    </div>
+                                    <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Low Priority</span>
+                                </div>
+                                <div class="mt-3 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                    <div>
+                                        <span class="font-medium text-gray-700">Status:</span> Needs Approval
+                                    </div>
+                                    <div>
+                                        <span class="font-medium text-gray-700">Target:</span> Q1 2024
+                                    </div>
+                                    <div>
+                                        <span class="font-medium text-gray-700">Budget:</span> $8,000
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="priority-low p-4 bg-white rounded-lg border shadow-sm">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h4 class="font-medium">Document Management System</h4>
+                                        <p class="text-sm text-gray-600 mt-1">Evaluate and implement enterprise document management solution.</p>
+                                    </div>
+                                    <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Low Priority</span>
+                                </div>
+                                <div class="mt-3 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                    <div>
+                                        <span class="font-medium text-gray-700">Status:</span> Research Phase
+                                    </div>
+                                    <div>
+                                        <span class="font-medium text-gray-700">Target:</span> Q2 2024
+                                    </div>
+                                    <div>
+                                        <span class="font-medium text-gray-700">Budget:</span> TBD
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. Knowledge Transfer -->
+            <section id="knowledge-section" class="handover-section bg-white rounded-lg shadow-md overflow-hidden mb-6">
+                <div class="section-header flex justify-between items-center p-6 bg-gray-800 text-white cursor-pointer">
+                    <h2 class="text-xl font-bold flex items-center gap-3">
+                        <i class="fas fa-brain"></i>
+                        <span>7. Knowledge Transfer</span>
+                    </h2>
+                    <i class="toggle-icon fas fa-chevron-down text-white"></i>
+                </div>
+                <div class="section-content p-6">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">Troubleshooting Guides</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-medium text-gray-800 mb-2">Network Outages</h4>
+                                <ol class="list-decimal pl-5 space-y-1 text-gray-700">
+                                    <li>Check ISP status dashboard</li>
+                                    <li>Verify core switch connectivity</li>
+                                    <li>Test local network connectivity</li>
+                                    <li>Review firewall logs</li>
+                                    <li>Escalate to vendor if needed</li>
+                                </ol>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <h4 class="font-medium text-gray-800 mb-2">Email Delivery Issues</h4>
+                                <ol class="list-decimal pl-5 space-y-1 text-gray-700">
+                                    <li>Check Mimecast quarantine</li>
+                                    <li>Verify Exchange Online status</li>
+                                    <li>Test message trace</li>
+                                    <li>Review recipient's spam filter</li>
+                                    <li>Check blacklists if needed</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">Common Issues</h3>
+                        <div class="space-y-4">
+                            <div class="p-4 bg-white rounded-lg border shadow-sm">
+                                <h4 class="font-medium text-gray-800 mb-2">VPN Connection Problems</h4>
+                                <div class="text-sm text-gray-700">
+                                    <p class="mb-2"><strong>Frequency:</strong> 2-3 tickets per week</p>
+                                    <p><strong>Resolution Steps:</strong></p>
+                                    <ol class="list-decimal pl-5 mt-1 space-y-1">
+                                        <li>Have user verify MFA is working</li>
+                                        <li>Check FortiGate VPN logs</li>
+                                        <li>Verify user's account is not locked</li>
+                                        <li>Check for client software updates</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <div class="p-4 bg-white rounded-lg border shadow-sm">
+                                <h4 class="font-medium text-gray-800 mb-2">Printer Queue Stuck</h4>
+                                <div class="text-sm text-gray-700">
+                                    <p class="mb-2"><strong>Frequency:</strong> 1-2 tickets per month</p>
+                                    <p><strong>Resolution Steps:</strong></p>
+                                    <ol class="list-decimal pl-5 mt-1 space-y-1">
+                                        <li>Restart print spooler service</li>
+                                        <li>Clear print queue on server</li>
+                                        <li>Check for driver updates</li>
+                                        <li>Restart printer if needed</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">Key Contacts</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Expertise</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">Michael Chen</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Network Engineer</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">michael.chen@company.com<br>Ext. 4567</td>
+                                        <td class="px-6 py-4">Cisco, FortiGate, VPN</td>
+                                    </tr>
+                                    <tr class="bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">Lisa Rodriguez</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Systems Admin</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">lisa.rodriguez@company.com<br>Ext. 3210</td>
+                                        <td class="px-6 py-4">VMware, Windows Server</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap font-medium">David Wilson</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">ERP Specialist</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">david.wilson@company.com<br>Ext. 7890</td>
+                                        <td class="px-6 py-4">SAP, Business Systems</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-12 bg-white rounded-lg shadow-md p-6 text-center">
+            <h3 class="text-lg font-medium text-gray-800 mb-2">IT Handover Document</h3>
+            <p class="text-gray-600 mb-4">This document contains confidential information about our IT infrastructure.</p>
+            <div class="flex justify-center gap-4">
+                <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+                    <i class="fas fa-print"></i> Print Document
+                </button>
+                <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
+                    <i class="fas fa-file-pdf"></i> Export as PDF
+                </button>
+            </div>
+            <p class="text-gray-500 text-sm mt-6">Document version: 1.0. Last updated: June 15, 2023</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Section toggle functionality
+            const sectionHeaders = document.querySelectorAll('.section-header');
+            sectionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const section = this.parentElement;
+                    const icon = this.querySelector('.toggle-icon');
+                    
+                    section.classList.toggle('collapsed');
+                    icon.classList.toggle('rotated');
+                });
+            });
+
+            // Expand all sections
+            document.getElementById('expandAll').addEventListener('click', function() {
+                document.querySelectorAll('.handover-section').forEach(section => {
+                    section.classList.remove('collapsed');
+                    section.querySelector('.toggle-icon').classList.add('rotated');
+                });
+            });
+
+            // Collapse all sections
+            document.getElementById('collapseAll').addEventListener('click', function() {
+                document.querySelectorAll('.handover-section').forEach(section => {
+                    section.classList.add('collapsed');
+                    section.querySelector('.toggle-icon').classList.remove('rotated');
+                });
+            });
+
+            // Search functionality
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                // Remove previous highlights
+                document.querySelectorAll('.search-highlight').forEach(el => {
+                    el.classList.remove('search-highlight');
+                });
+                
+                if (searchTerm.length < 3) return;
+                
+                // Search through all text content
+                const walker = document.createTreeWalker(
+                    document.body,
+                    NodeFilter.SHOW_TEXT,
+                    null,
+                    false
+                );
+                
+                let node;
+                while (node = walker.nextNode()) {
+                    if (node.nodeValue.toLowerCase().includes(searchTerm)) {
+                        const parent = node.parentNode;
+                        if (parent.nodeType === Node.ELEMENT_NODE) {
+                            const html = parent.innerHTML;
+                            const highlighted = html.replace(
+                                new RegExp(searchTerm, 'gi'),
+                                match => `<span class="search-highlight">${match}</span>`
+                            );
+                            parent.innerHTML = highlighted;
+                        }
+                    }
+                }
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        // Expand the section if it's collapsed
+                        const section = target.closest('.handover-section');
+                        if (section && section.classList.contains('collapsed')) {
+                            section.classList.remove('collapsed');
+                            section.querySelector('.toggle-icon').classList.add('rotated');
+                        }
+                        
+                        // Scroll to the target
+                        window.scrollTo({
+                            top: target.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
